@@ -24,6 +24,12 @@ int main(int ac, char **av, char **env)
         write(2,"Path nao encontrado",19);
         return(-1);
     }
+    char **arr;
+
+    arr = ft_split(path_value,':');
+
+  
+
 
     return(0);
 }
