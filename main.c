@@ -15,6 +15,15 @@
 
 int main(int ac, char **av, char **env)
 {
-   
 
+    char *path_value;
+    path_value = NULL;
+    path_value = ft_getenv(env);
+    if(path_value == NULL)
+    {
+        write(2,"Path nao encontrado",19);
+        return(-1);
+    }
+
+    return(0);
 }
