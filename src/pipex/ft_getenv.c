@@ -24,6 +24,5 @@ char *ft_getenv(char **env)
             return(p + 5);
         env++;
     }
-    
     return(NULL);
 }
