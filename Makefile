@@ -4,7 +4,7 @@ PRINTF_SRC = ft_printc.c ft_printf.c ft_putstr.c ft_strrchr.c \
 	     ft_hexdec.c ft_putchar.c ft_putnbr.c ft_strlen.c \
 		 ft_printp.c ft_unsigned.c  
 
-LIBFT_SRC = ft_strnstr.c
+LIBFT_SRC = ft_strnstr.c ft_calloc.c ft_bzero.c ft_split.c
 
 PIPEX_SRC = ft_getenv.c
 
