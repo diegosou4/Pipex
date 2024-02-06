@@ -14,6 +14,7 @@
 # define PIPEX_H
 
 #include "ft_printf.h"
+#include "libft.h"
 #include <fcntl.h>
 #include <stdlib.h>
 #include <errno.h>
@@ -22,7 +23,7 @@
 
 
 
-
+char *ft_getenv(char **env);
 
 
 
