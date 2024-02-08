@@ -53,6 +53,7 @@ t_pipe  *new_pipe(char **command)
         return(NULL);
     pipe->comands = command;
     pipe->next = NULL;
+    pipe->path = NULL;
     return(pipe);
 
 }

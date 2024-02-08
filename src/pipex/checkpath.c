@@ -50,7 +50,7 @@ void commands(int ac,char **av,t_pipe **pipex)
         i++;
     }
 }
-
+/*
 void parse_progam(int ac,char **av,char **env)
 {
     char *path_value;    
@@ -60,10 +60,10 @@ void parse_progam(int ac,char **av,char **env)
     path = ft_getenv(env);
     //  Protecao pro path
 
-    char **paths;
-    paths = ft_split(path,':');
+
     commands(ac,av,&pipex);
-    exec_pipe(&pipex,paths,env);
+    pipex->path = ft_split(path,':');
+    exec_pipe(&pipex,pipex->path,env);
 
 
 
@@ -72,4 +72,4 @@ void parse_progam(int ac,char **av,char **env)
     */
 
 
-}
+}*/

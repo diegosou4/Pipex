@@ -15,7 +15,16 @@
 
 int main(int ac, char **av, char **env)
 {
-    // check_ac(ac);
-   parse_progam(ac,av,env);
+    if(ac < 4)
+        return(0);
+ 
+    t_pipe *pipex;
+    int i;
+    i = ft_dstrlen(av);
+    pipex->infile = open(av[1], O_RDONLY);
+    pipex->outfile = open(av[i - 1], O_RDONLY);
+    pipex->sizecomands = ac - 3;
+ 
+ 
     return(0);
 }
