@@ -32,27 +32,23 @@ char *checkpath(char **path, char *command)
     return NULL;
 }
 
-char **array_commands(int ac,char **av,t_pipe **pipex)
+void commands(int ac,char **av,t_pipe **pipex)
 {
     int numc;
-    numc = check_ac(ac);
     char **commands;
     static int i;
-    i = numc;
-    while(i != (ac - 1))
+    i = 2;
+    while(i <= (ac - 2))
     {
-        if(i == numc)
+        if(i == 2)
            *pipex = new_pipe(ft_split(av[i], ' '));
         else
         {
-          add_back(ft_split(av[i], ' '),pipex);  
+            add_back(ft_split(av[i], ' '),pipex); 
         }
-        i += numc;
+           
+        i++;
     }
-
-     printf("Vamo ver ate aonde ta aqui");
-
-
 }
 
 void parse_progam(int ac,char **av,char **env)
@@ -60,27 +56,20 @@ void parse_progam(int ac,char **av,char **env)
     char *path_value;    
     t_pipe *pipex;
     pipex = NULL;
-    
-    array_commands(ac,av,&pipex);
-    /*
-    char **arg = ft_split(av[1],' ');
-    comands = simple_split(av[1],' ');
-    path_value = NULL;
-    path_value = ft_getenv(env);
-    if(path_value == NULL)
-    {
-        write(2,"Path nao encontrado",19);
-        return(-1);
-    }
-    char **arr;
     char *path;
-    arr = ft_split(path_value,':');
-    path = checkpath(arr, ft_strjoin("/", comands));
-    int fd[2];
+    path = ft_getenv(env);
+    //  Protecao pro path
+
+    char **paths;
+    paths = ft_split(path,':');
+    commands(ac,av,&pipex);
+    exec_pipe(&pipex,paths,env);
 
 
+
+    /*
     execve(path,arg,env);
-*/
+    */
 
 
 }

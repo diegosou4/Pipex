@@ -18,6 +18,7 @@ int check_ac(int ac)
     ac--;
     if(ac % 2 == 0 && ac >= 4)
         return((ac / 2));
-    printf_error("Numero de Argumentos invalidos\n");
-    exit(0);
+  //  printf_error("Numero de Argumentos invalidos\n");
+    //exit(0);
+    return(1);
 }
