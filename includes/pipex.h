@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diegmore <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: diemorei <diemorei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 16:36:21 by diegmore          #+#    #+#             */
-/*   Updated: 2024/02/06 16:36:23 by diegmore         ###   ########.fr       */
+/*   Updated: 2024/02/08 10:02:14 by diemorei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define PIPEX_H
 
 #include "ft_printf.h"
-#include "libft.h"
 #include <fcntl.h>
 #include <stdlib.h>
 #include <errno.h>
@@ -24,7 +23,7 @@
 
 
 char *ft_getenv(char **env);
-
+char *checkpath(char **path, char *command);
 
 
 
