@@ -21,3 +21,16 @@ int	ft_strlen(char *str)
 		i++;
 	return (i);
 }
+
+int ft_dstrlen(char **str)
+{
+	int i;
+
+	i = 0;
+
+	while(str[i] != NULL)
+	{
+		i++;
+	}
+	return(i);
+}
