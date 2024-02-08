@@ -66,5 +66,22 @@ void add_back(char **command, t_pipe **pipe)
     if(last == NULL)
         return;
     ptr = *(pipe);
+    while(ptr->next != NULL)
+        ptr = ptr->next;
     ptr->next = last;
+}
+
+int pipesize(t_pipe **pipe)
+{
+    t_pipe *ptr;
+    int i;
+    i = 0;
+    ptr = *(pipe);
+
+    while(ptr != NULL)
+    {
+        ptr = ptr->next;
+        i++; 
+    }
+    return(i);
 }
