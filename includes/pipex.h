@@ -32,12 +32,14 @@ typedef struct pipe
 char *ft_getenv(char **env);
 char *checkpath(char **path, char *command);
 
-
+void exec(char *path, char **args, int in, int out, char **env);
 int check_ac(int ac);
+void exec_pipe(t_pipe **pipex, char **paths, char **env);
 
 void printf_error(char *str);
 void parse_progam(int ac,char **av,char **env);
 char *simple_split(char *str, char sep);
 t_pipe  *new_pipe(char **command);
+char *ask_acess(t_pipe **pipex,char **path, int indexcom);
 void add_back(char **command, t_pipe **pipe);
 #endif
