@@ -44,13 +44,13 @@ void exec_pipe(t_pipe **pipex, char **paths, char **env)
     int fd[2];
     ptr = *(pipex);
     pipe(fd);
-    fd[1] = open("../../file1.txt", O_RDWR);
+    fd[1] = open("file1.txt", O_RDWR);
     exec(path, ptr->comands,0,fd[1],env);
     
     int fd2[2];
     pipe(fd2);
-    fd[1] = open("../../file1.txt", O_RDWR);
-    fd2[1] = open("../../file2.txt", O_RDWR);
+    fd[1] = open("file1.txt", O_RDWR);
+    fd2[1] = open("file2.txt", O_RDWR);
     path = ask_acess(pipex,paths,1);
     ptr = ptr->next;
     exec(path, ptr->comands, fd[1], fd2[1], env);
