@@ -20,10 +20,13 @@
 #include <string.h>
 #include <sys/wait.h>
 
-
 typedef struct pipe
 {
+    char *path;
+    int infile;
+    int outfile;
     char **comands;
+    int sizecomands;
     struct pipe *next;
 }           t_pipe;
 
