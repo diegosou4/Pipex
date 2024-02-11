@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diegmore <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: diemorei <diemorei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 15:41:03 by diegmore          #+#    #+#             */
-/*   Updated: 2024/02/08 15:41:04 by diegmore         ###   ########.fr       */
+/*   Updated: 2024/02/11 13:33:25 by diemorei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void exec(char *path, char **args, int in, int out, char **env)
 
 void exec_pipe(t_pipe **pipex, char **paths, char **env)
 {
+    /*
     t_pipe *ptr;
     char *path;
     path = ask_acess(pipex,paths, 0);
@@ -56,5 +57,5 @@ void exec_pipe(t_pipe **pipex, char **paths, char **env)
     exec(path, ptr->comands, fd[1], fd2[1], env);
     wait(NULL);
     wait(NULL);
-
+    */
 }
