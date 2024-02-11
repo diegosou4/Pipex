@@ -6,7 +6,7 @@
 /*   By: diemorei <diemorei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 16:42:56 by diegmore          #+#    #+#             */
-/*   Updated: 2024/02/08 10:33:50 by diemorei         ###   ########.fr       */
+/*   Updated: 2024/02/11 13:33:06 by diemorei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,8 @@ int main(int ac, char **av, char **env)
         return(0);
  
     t_pipe *pipex;
-    int i;
-    i = ft_dstrlen(av);
-    pipex->infile = open(av[1], O_RDONLY);
-    pipex->outfile = open(av[i - 1], O_RDONLY);
-    pipex->sizecomands = ac - 3;
- 
- 
+    pipex = malloc(sizeof(t_pipe));
+    openfd(pipex, ac, av);
+    parse_progam(ac, av, env, &pipex);
     return(0);
 }
