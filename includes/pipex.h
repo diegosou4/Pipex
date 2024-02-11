@@ -6,7 +6,7 @@
 /*   By: diemorei <diemorei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 16:36:21 by diegmore          #+#    #+#             */
-/*   Updated: 2024/02/11 13:17:06 by diemorei         ###   ########.fr       */
+/*   Updated: 2024/02/11 13:38:10 by diemorei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ int check_ac(int ac);
 void exec_pipe(t_pipe **pipex, char **paths, char **env);
 
 void printf_error(char *str);
-void parse_progam(int ac,char **av,char **env);
+void parse_progam(int ac,char **av,char **env, t_pipe **pipex);
 char *simple_split(char *str, char sep);
 t_pipe  *new_pipe(char **command);
 void exec_pipe(t_pipe **pipex, char **paths, char **env);
 void openfd(t_pipe *pipex,int ac,char **av);
-char *ask_acess(t_pipe **pipex,char **path, int indexcom);
+char *ask_acess(t_pipe **pipex);
 void add_back(char **command, t_pipe **pipe);
 #endif
