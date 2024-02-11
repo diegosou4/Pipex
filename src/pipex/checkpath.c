@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checkpath.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diegmore <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: diemorei <diemorei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 12:26:07 by diegmore          #+#    #+#             */
-/*   Updated: 2024/02/08 12:26:09 by diegmore         ###   ########.fr       */
+/*   Updated: 2024/02/11 13:18:49 by diemorei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void commands(int ac,char **av,t_pipe **pipex)
         i++;
     }
 }
-/*
+
 void parse_progam(int ac,char **av,char **env)
 {
     char *path_value;    
@@ -61,9 +61,9 @@ void parse_progam(int ac,char **av,char **env)
     //  Protecao pro path
 
 
-    commands(ac,av,&pipex);
-    pipex->path = ft_split(path,':');
-    exec_pipe(&pipex,pipex->path,env);
+   // commands(ac,av,&pipex);
+  //  pipex->path = ft_split(path,':');
+ //   exec_pipe(&pipex,pipex->path,env);
 
 
 
@@ -71,5 +71,4 @@ void parse_progam(int ac,char **av,char **env)
     execve(path,arg,env);
     */
 
-
-}*/
+}
