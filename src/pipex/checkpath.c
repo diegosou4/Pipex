@@ -38,30 +38,30 @@ char *checkpath(char **path, char *command)
 
 void commands(int ac,char **av,t_pipe **pipex)
 {
-    int numc;
-    char **commands;
-    static int i;
-    i = 2;
+    int i = 2;
     while(i <= (ac - 2))
     {
         if(i == 2)
-           *pipex = new_pipe(ft_split(av[i], ' '));
+            (*pipex)->commands =  new_cmd(av[i]);
         else
-        {
-            add_back(ft_split(av[i], ' '),pipex); 
-        }
-           
+            add_backcmd(av[i], &(*pipex)->commands);
         i++;
     }
 }
 
+
 void parse_progam(int ac,char **av,char **env, t_pipe **pipex)
 {
-    (*pipex)->path = ft_getenv(env);
+    char *path;
 
-    ask_acess(pipex);
+    path = ft_getenv(env);
+    commands(ac,av,pipex);
+    ask_acess(pipex, path);
+
     if((*pipex)->path == NULL)
     {
         free(*pipex);        
     }
+
+
 }
