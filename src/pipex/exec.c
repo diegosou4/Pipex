@@ -36,26 +36,27 @@ void exec(char *path, char **args, int in, int out, char **env)
 }
 
 
-void exec_pipe(t_pipe **pipex, char **paths, char **env)
+void exec_pipe(t_pipe **pipex, char **env)
 {
-    /*
-    t_pipe *ptr;
+    char *args[] = {"/ls", NULL};
     char *path;
-    path = ask_acess(pipex,paths, 0);
+    char *comand;
     int fd[2];
-    ptr = *(pipex);
+
+
+    path = ft_strjoin((*pipex)->path,args[0]);
     pipe(fd);
-    fd[1] = open("file1.txt", O_RDWR);
-    exec(path, ptr->comands,0,fd[1],env);
+    dup2((*pipex)->infile,fd[1]);
+
+    exec(path,args,0,fd[1],env);
+
+    int fd1[2];
+    pipe(fd1);
+    dup2((*pipex)->outfile,fd1[1]);
     
-    int fd2[2];
-    pipe(fd2);
-    fd[1] = open("file1.txt", O_RDWR);
-    fd2[1] = open("file2.txt", O_RDWR);
-    path = ask_acess(pipex,paths,1);
-    ptr = ptr->next;
-    exec(path, ptr->comands, fd[1], fd2[1], env);
+    char *args1[] = {"/wc", "-l", NULL};
+    path = ft_strjoin((*pipex)->path,args1[0]);
+    exec(path,args1,fd[1],fd1[1],env);
     wait(NULL);
     wait(NULL);
-    */
 }

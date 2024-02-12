@@ -18,9 +18,11 @@ void *ask_acess(t_pipe **pipex, char *path)
 {
    char **paths;
    char *new_path;
+   char **comands;
+   comands = ft_split((*pipex)->commands->commands, ' ');
    static int i;
    paths = ft_split(path, ':');
-   new_path =  checkpath(paths,"ls");
+   new_path =  checkpath(paths,comands[0]);
    (*pipex)->path = new_path;
    while(paths[i] != NULL)
    {
@@ -28,6 +30,13 @@ void *ask_acess(t_pipe **pipex, char *path)
       i++;
    }
    free(paths);
+   i = 0;
+   while (comands[i] != NULL)
+   {
+      free(comands[i]);
+      i++;
+   }
+   free(comands);
 }
 
 

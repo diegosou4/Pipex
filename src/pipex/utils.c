@@ -62,12 +62,12 @@ int pipesize(t_pipe **pipe)
 t_cmd *new_cmd(char *comands)
 {
     t_cmd *cmd;
-    cmd = malloc(sizeof(t_cmd) * 1);
+    cmd = (t_cmd*) malloc(sizeof(t_cmd) * 1);
     if(cmd == NULL)
     {
         return(NULL);
     }
-    cmd->commands = comands;
+    cmd->commands = ft_strjoin("/",comands);
     if(cmd->commands == NULL)
     {
         free(cmd);

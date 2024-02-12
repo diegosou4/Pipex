@@ -19,14 +19,16 @@ char *checkpath(char **path, char *command)
     int i = 0;
     char *path_value = NULL;
     char *comandf;
+
     while(path[i] != NULL)
     {
         comandf = ft_strjoin("/",command);
-        path_value = ft_strdup(ft_strjoin(path[i], comandf));
+        path_value = ft_strjoin(path[i], comandf);
         if(access(path_value, F_OK) == 0)
         {
+            free(path_value);
             free(comandf);
-            return path_value;
+            return (ft_strdup(path[i]));
         }
         free(path_value);
         free(comandf);
@@ -57,11 +59,12 @@ void parse_progam(int ac,char **av,char **env, t_pipe **pipex)
     path = ft_getenv(env);
     commands(ac,av,pipex);
     ask_acess(pipex, path);
-
     if((*pipex)->path == NULL)
     {
-        free(*pipex);        
+        free_commands(&(*pipex)->commands,pipex);
     }
+    exec_pipe(pipex,env);
+
 
 
 }
