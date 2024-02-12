@@ -48,11 +48,9 @@ void exec_pipe(t_pipe **pipex, char **paths, char **env);
 void printf_error(char *str);
 void parse_progam(int ac,char **av,char **env, t_pipe **pipex);
 char *simple_split(char *str, char sep);
-t_pipe  *new_pipe(char **command);
 void exec_pipe(t_pipe **pipex, char **paths, char **env);
 void openfd(t_pipe *pipex,int ac,char **av);
 void *ask_acess(t_pipe **pipex, char *path);
-void add_back(char **command, t_pipe **pipe);
 char *checkpath(char **path, char *command);
 
 t_cmd *new_cmd(char *comands);
