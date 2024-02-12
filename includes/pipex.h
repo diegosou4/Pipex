@@ -20,12 +20,18 @@
 #include <string.h>
 #include <sys/wait.h>
 
+typedef struct cmd
+{
+    char *commands;
+    struct cmd *next;
+}       t_cmd;
+
 typedef struct pipe
 {
     char *path;
     int infile;
     int outfile;
-    char **comands;
+    struct cmd *commands;
     int sizecomands;
     struct pipe *next;
 }           t_pipe;
@@ -45,6 +51,11 @@ char *simple_split(char *str, char sep);
 t_pipe  *new_pipe(char **command);
 void exec_pipe(t_pipe **pipex, char **paths, char **env);
 void openfd(t_pipe *pipex,int ac,char **av);
-char *ask_acess(t_pipe **pipex);
+void *ask_acess(t_pipe **pipex, char *path);
 void add_back(char **command, t_pipe **pipe);
+char *checkpath(char **path, char *command);
+
+t_cmd *new_cmd(char *comands);
+void add_backcmd(char *comands, t_cmd **cmd);
+
 #endif
