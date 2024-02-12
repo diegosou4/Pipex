@@ -14,13 +14,28 @@
 #include "../../includes/pipex.h"
 
 
-char *ask_acess(t_pipe **pipex)
+void *ask_acess(t_pipe **pipex, char *path)
 {
-
    char **paths;
-
-   paths = ft_split((*pipex)->path, ':');
-   free((*pipex)->path);
-   (*pipex)->path = checkpath(paths, "ls");
+   char *new_path;
+   static int i;
+   paths = ft_split(path, ':');
+   new_path =  checkpath(paths,"ls");
+   (*pipex)->path = new_path;
+   while(paths[i] != NULL)
+   {
+      free(paths[i]);
+      i++;
+   }
+   free(paths);
 }
 
+
+void free_pipe(t_pipe **pipex)
+{
+
+
+
+
+
+}
