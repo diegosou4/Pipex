@@ -44,24 +44,20 @@ void exec(char *path, char **args, int in, int out, char **env)
 
 void exec_pipe(t_pipe **pipex, char **env)
 {
-    char *args[] = {"/ls", NULL};
+    
+    char *args[] = {"/ls", "-l", NULL};
     char *path;
     char *comand;
 
     char *path2 = ft_strjoin((*pipex)->path, args[0]);
-    exec(path2,args,0,(*pipex)->infile,env);
-
-    char *args2[] = {"/wc","-l", NULL};
-    
-    path2 = ft_strjoin((*pipex)->path, args2[0]);
-    exec(path2,args2,(*pipex)->infile,(*pipex)->outfile,env);
-
-    
-    /*
-
-
-    int fd1[2];
-
-    pipe(fd);
-    */
+    pid_t idFilho = fork();
+    printf("%i---\n",idFilho);
+    if(idFilho == 0)
+    {
+           execve(path2,args,env);
+           printf("aax");
+           exit(127);
+    }
+    printf("a\n");
+ 
 }
