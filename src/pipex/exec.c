@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diegmore <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: diemorei <diemorei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 15:41:03 by diegmore          #+#    #+#             */
-/*   Updated: 2024/02/08 15:41:04 by diegmore         ###   ########.fr       */
+/*   Updated: 2024/02/11 13:33:25 by diemorei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,25 +36,27 @@ void exec(char *path, char **args, int in, int out, char **env)
 }
 
 
-void exec_pipe(t_pipe **pipex, char **paths, char **env)
+void exec_pipe(t_pipe **pipex, char **env)
 {
-    t_pipe *ptr;
+    char *args[] = {"/ls", NULL};
     char *path;
-    path = ask_acess(pipex,paths, 0);
+    char *comand;
     int fd[2];
-    ptr = *(pipex);
-    pipe(fd);
-    fd[1] = open("../../file1.txt", O_RDWR);
-    exec(path, ptr->comands,0,fd[1],env);
-    
-    int fd2[2];
-    pipe(fd2);
-    fd[1] = open("../../file1.txt", O_RDWR);
-    fd2[1] = open("../../file2.txt", O_RDWR);
-    path = ask_acess(pipex,paths,1);
-    ptr = ptr->next;
-    exec(path, ptr->comands, fd[1], fd2[1], env);
-    wait(NULL);
-    wait(NULL);
 
+
+    path = ft_strjoin((*pipex)->path,args[0]);
+    pipe(fd);
+    dup2((*pipex)->infile,fd[1]);
+
+    exec(path,args,0,fd[1],env);
+
+    int fd1[2];
+    pipe(fd1);
+    dup2((*pipex)->outfile,fd1[1]);
+    
+    char *args1[] = {"/wc", "-l", NULL};
+    path = ft_strjoin((*pipex)->path,args1[0]);
+    exec(path,args1,fd[1],fd1[1],env);
+    wait(NULL);
+    wait(NULL);
 }

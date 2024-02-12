@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   acess.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diegmore <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: diemorei <diemorei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 15:47:29 by diegmore          #+#    #+#             */
-/*   Updated: 2024/02/08 15:47:31 by diegmore         ###   ########.fr       */
+/*   Updated: 2024/02/11 14:28:58 by diemorei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,37 @@
 #include "../../includes/pipex.h"
 
 
-char *ask_acess(t_pipe **pipex,char **path, int indexcom)
+void *ask_acess(t_pipe **pipex, char *path)
 {
-   t_pipe *ptr;
-    int i;
-    char *str;
-    i = 0;
-   ptr = *(pipex);
-    while(i != indexcom)
-    {
-        ptr = ptr->next;
-        i++;
-    }
-    while(path[i] != NULL)
-    {
-        str = ft_strjoin("/",ptr->comands[0]);
-        str = ft_strjoin(path[i] ,str);
-        if(access(str,F_OK) == 0)
-        {
-            return(str);
-        }
-        i++;
-    }
-    return(NULL);
+   char **paths;
+   char *new_path;
+   char **comands;
+   comands = ft_split((*pipex)->commands->commands, ' ');
+   static int i;
+   paths = ft_split(path, ':');
+   new_path =  checkpath(paths,comands[0]);
+   (*pipex)->path = new_path;
+   while(paths[i] != NULL)
+   {
+      free(paths[i]);
+      i++;
+   }
+   free(paths);
+   i = 0;
+   while (comands[i] != NULL)
+   {
+      free(comands[i]);
+      i++;
+   }
+   free(comands);
 }
 
+
+void free_pipe(t_pipe **pipex)
+{
+
+
+
+
+
+}

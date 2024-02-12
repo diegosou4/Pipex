@@ -44,33 +44,6 @@ char *simple_split(char *str, char sep)
         return(str);
 }
 
-t_pipe  *new_pipe(char **command)
-{
-    t_pipe *pipe;
-
-    pipe = (t_pipe*) malloc (sizeof(t_pipe) * 1);
-    if(pipe == NULL)
-        return(NULL);
-    pipe->comands = command;
-    pipe->next = NULL;
-    return(pipe);
-
-}
-
-void add_back(char **command, t_pipe **pipe)
-{
-    t_pipe *ptr;
-    t_pipe *last;
-
-    last = new_pipe(command);
-    if(last == NULL)
-        return;
-    ptr = *(pipe);
-    while(ptr->next != NULL)
-        ptr = ptr->next;
-    ptr->next = last;
-}
-
 int pipesize(t_pipe **pipe)
 {
     t_pipe *ptr;
@@ -84,4 +57,38 @@ int pipesize(t_pipe **pipe)
         i++; 
     }
     return(i);
+}
+
+t_cmd *new_cmd(char *comands)
+{
+    t_cmd *cmd;
+    cmd = (t_cmd*) malloc(sizeof(t_cmd) * 1);
+    if(cmd == NULL)
+    {
+        return(NULL);
+    }
+    cmd->commands = ft_strjoin("/",comands);
+    if(cmd->commands == NULL)
+    {
+        free(cmd);
+        return(NULL);
+    }
+    cmd->next = NULL;
+    return cmd;
+}
+
+void add_backcmd(char *comands, t_cmd **cmd)
+{
+    t_cmd *ptr;
+    t_cmd *last;
+
+    last = new_cmd(comands);
+    if(last == NULL)
+        return;
+    ptr = *(cmd);
+    while(ptr->next != NULL)
+    {
+        ptr = ptr->next;
+    }
+    ptr->next = last;
 }
