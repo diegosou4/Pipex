@@ -36,13 +36,6 @@ void exec(char *path, char **args, int in, int out, char **env)
 }
 
 
-void dad(t_pipe **pipex, char **env)
-{
-
-
-
-
-}
 
 void exec_pipe(t_pipe **pipex, char **env)
 {

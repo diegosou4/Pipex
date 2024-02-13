@@ -38,32 +38,31 @@ char *checkpath(char **path, char *command)
     return NULL;
 }
 
-void commands(int ac,char **av,t_pipe **pipex)
+void get_commands(t_pipe **pipex, char *path,int ac,char **av)
 {
-    int i = 2;
-    while(i <= (ac - 2))
-    {
+    int i;
+    i = 2;
+   while(i != (ac - 1))
+   {
         if(i == 2)
-            (*pipex)->commands =  new_cmd(av[i]);
+            (*pipex)->commands =  new_cmd(ft_split(av[i], ' '));
         else
-            add_backcmd(av[i], &(*pipex)->commands);
-        i++;
-    }
+        add_backcmd(ft_split(av[i], ' '),&(*pipex)->commands);
+    i++;
+   }
 }
 
 
 void parse_progam(int ac,char **av,char **env, t_pipe **pipex)
 {
     char *path;
+    char *fcommand;
 
+    char *okpath;
+    fcommand = ft_strjoin("/",av[2]);
     path = ft_getenv(env);
-    commands(ac,av,pipex);
-    ask_acess(pipex, path);
-    if((*pipex)->path == NULL)
-    {
-        free_commands(&(*pipex)->commands,pipex);
-    }
-    exec_pipe(pipex,env);
+    get_commands(pipex,path,ac,av);
+
 
 
 

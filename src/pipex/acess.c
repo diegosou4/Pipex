@@ -13,30 +13,39 @@
 
 #include "../../includes/pipex.h"
 
-
-void *ask_acess(t_pipe **pipex, char *path)
+void free_paths(char **paths)
 {
-   char **paths;
-   char *new_path;
-   char **comands;
-   comands = ft_split((*pipex)->commands->commands, ' ');
-   static int i;
-   paths = ft_split(path, ':');
-   new_path =  checkpath(paths,comands[0]);
-   (*pipex)->path = new_path;
+   int i;
+   i = 0;
    while(paths[i] != NULL)
    {
       free(paths[i]);
       i++;
    }
    free(paths);
+}
+
+
+char *ask_acess(char *comand, char *path)
+{
+   char **paths;
+   int i;
+   char *cplusp;
+   paths = ft_split(path,':');
    i = 0;
-   while (comands[i] != NULL)
+   while(paths[i])
    {
-      free(comands[i]);
+      cplusp = ft_strjoin(paths[i],comand);
+      if(access(cplusp,F_OK) == 0)
+      {
+         free(cplusp);
+         cplusp = ft_strdup(paths[i]);
+         free_paths(paths);
+         return(cplusp);
+      }
       i++;
    }
-   free(comands);
+      return(NULL);
 }
 
 
