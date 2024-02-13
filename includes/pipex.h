@@ -32,7 +32,6 @@ typedef struct pipe
     int infile;
     int outfile;
     struct cmd *commands;
-    int sizecomands;
     struct pipe *next;
 }           t_pipe;
 
