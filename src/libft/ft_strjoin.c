@@ -5,11 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: diegmore <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/06 18:22:45 by diegmore          #+#    #+#             */
-/*   Updated: 2024/02/06 18:22:47 by diegmore         ###   ########.fr       */
+/*   Created: 2023/10/05 13:50:07 by diegmore          #+#    #+#             */
+/*   Updated: 2023/10/05 13:50:08 by diegmore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../includes/libft.h"
 
@@ -38,3 +37,13 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	new[i] = '\0';
 	return (new);
 }
+
+/*
+	The fuction strjoin return a new string with s1 and s2,
+		so you need size of s1 and s2,
+	before you neeed malloc,
+		checks if malloc is done and if s1 and s2 have anything,
+		if not return null,
+	before you need two variables for copy s1 and s2,
+		so in the final you put null in last and return the string
+*/

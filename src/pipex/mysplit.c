@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   mysplit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: diegmore <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/11 11:20:39 by diegmore          #+#    #+#             */
-/*   Updated: 2023/10/11 11:20:41 by diegmore         ###   ########.fr       */
+/*   Created: 2024/02/14 15:43:10 by diegmore          #+#    #+#             */
+/*   Updated: 2024/02/14 17:33:34 by diegmore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libft.h"
+#include "../../includes/pipex.h"
 
 static int	ft_countwords(char *s, char sep)
 {
@@ -73,6 +73,7 @@ static int	ft_givestring(char *s, char sep, char *dest)
 			i++;
 			j++;
 		}
+		dest[j] = '/';
 		if (s[i] == sep)
 			return (i);
 	}
@@ -90,7 +91,7 @@ static void	*free_malloc(char **s, int i)
 	return (NULL);
 }
 
-char	**ft_split(char const *s, char c)
+char	**mysplit(char const *s, char c)
 {
 	char	**str;
 	int		i;
@@ -107,7 +108,7 @@ char	**ft_split(char const *s, char c)
 		return (0);
 	while (i < ft_countwords((char *)s, c))
 	{
-		str[i] = (char *)ft_calloc((ft_numberchar((char *)(s + p), c) + 1),
+		str[i] = (char *)ft_calloc((ft_numberchar((char *)(s + p), c) + 2),
 				sizeof(char));
 		if (!str[i])
 			return (free_malloc(str, i - 1));

@@ -13,51 +13,50 @@
 #ifndef PIPEX_H
 # define PIPEX_H
 
-#include "ft_printf.h"
-#include <fcntl.h>
-#include <stdlib.h>
-#include <errno.h>
-#include <string.h>
-#include <sys/wait.h>
+# include "ft_printf.h"
+# include <errno.h>
+# include <fcntl.h>
+# include <stdlib.h>
+# include <string.h>
+# include <sys/wait.h>
 
 typedef struct cmd
 {
-    char *path;
-    char **commands;
-    struct cmd *next;
-}       t_cmd;
+	char		*path;
+	char		**commands;
+
+	struct cmd	*next;
+}				t_cmd;
 
 typedef struct pipe
 {
-    int infile;
-    int outfile;
-    struct cmd *commands;
-}           t_pipe;
+	int			infile;
+	int			outfile;
+	struct cmd	*commands;
+}				t_pipe;
 
 
+void			openfd(t_pipe *pipex, int ac, char **av);
 
-char *ft_getenv(char **env);
-char *checkpath(char **path, char *command);
+void			parse_progam(int ac, char **av, char **env, t_pipe **pipex);
+void			get_commands(t_pipe **pipex, char *path, int ac, char **av);
+void			check_spath(t_pipe **pipex);
+char			*checkpath(char **path, char *command);
+char			*ask_acess(char *comand, char *path);
 
-void exec(char *path, char **args, int in, int out, char **env);
-int check_ac(int ac);
-void get_commands(t_pipe **pipex, char *path,int ac,char **av);
+t_cmd			*new_cmd(char **comands, char *path);
+void			add_backcmd(char **comands, t_cmd **cmd, char *path);
 
-void printf_error(char *str);
-void parse_progam(int ac,char **av,char **env, t_pipe **pipex);
-char *simple_split(char *str, char sep);
-void exec_pipe(t_pipe **pipex,char **env);
-void openfd(t_pipe *pipex,int ac,char **av);
-char *ask_acess(char *comand, char *path);
-char *checkpath(char **path, char *command);
-t_cmd *new_cmd(char **comands, char *path);
+char			*ft_getenv(char **env);
+void			exec(t_cmd *cmd, int in, int out, char **env);
+void			exec_pipe(t_pipe **pipex, char **env);
 
-void free_commands(t_cmd **comands, t_pipe **pipex);
-void add_backcmd(char **comands, t_cmd **cmd, char *path);
+char			**mysplit(char const *s, char c);
+void			printf_error(char *str);
 
-void free_paths(char **paths);
-void closefd(t_pipe **pipex);
-
-char	**mysplit(char const *s, char c);
-
+// Free
+void			free_mysplit(char **arr);
+void			free_commands(t_cmd **comands, t_pipe **pipex);
+void			free_paths(char **paths);
+void			free_s(t_pipe **pipex);
 #endif

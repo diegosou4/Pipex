@@ -6,7 +6,7 @@
 /*   By: diemorei <diemorei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 13:28:51 by diegmore          #+#    #+#             */
-/*   Updated: 2024/02/08 10:01:27 by diemorei         ###   ########.fr       */
+/*   Updated: 2024/02/14 17:29:43 by diegmore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,14 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-int ft_dstrlen(char **str)
+int	ft_dstrlen(char **str)
 {
-	int i;
+	int	i;
 
 	i = 0;
-
-	while(str[i] != NULL)
+	while (str[i] != NULL)
 	{
 		i++;
 	}
-	return(i);
+	return (i);
 }

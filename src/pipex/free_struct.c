@@ -1,24 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   free_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: diegmore <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 12:26:15 by diegmore          #+#    #+#             */
-/*   Updated: 2024/02/08 12:26:16 by diegmore         ###   ########.fr       */
+/*   Created: 2024/02/14 15:43:23 by diegmore          #+#    #+#             */
+/*   Updated: 2024/02/14 17:32:24 by diegmore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../../includes/pipex.h"
 
-int check_ac(int ac)
+void	free_s(t_pipe **pipex)
 {
-    ac--;
-    if(ac % 2 == 0 && ac >= 4)
-        return((ac / 2));
-  //  printf_error("Numero de Argumentos invalidos\n");
-    //exit(0);
-    return(1);
+	t_cmd	*ptr;
+	t_cmd	*next;
+
+	ptr = (*pipex)->commands;
+	while (ptr != NULL)
+	{
+		next = ptr->next;
+		free(ptr->path);
+		free_mysplit(ptr->commands);
+		free(ptr);
+		ptr = next;
+	}
+	free(*pipex);
+	*pipex = NULL;
+}
+
+void	free_mysplit(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i] != NULL)
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
 }

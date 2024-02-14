@@ -6,51 +6,46 @@
 /*   By: diemorei <diemorei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 15:41:03 by diegmore          #+#    #+#             */
-/*   Updated: 2024/02/11 13:33:25 by diemorei         ###   ########.fr       */
+/*   Updated: 2024/02/14 17:31:49 by diegmore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../../includes/pipex.h"
 
-
-void exec(char *path, char **args, int in, int out, char **env)
+void	exec(t_cmd *cmd, int in, int out, char **env)
 {
-    int pid = fork();
+	int		pid;
+	char	*path;
 
-    if (pid == 0)
-    {
-        dup2(in, 0);    // ler
-        dup2(out, 1);  // escreve
-        if (in != 0)
-            close(in);
-        if(out != 1)
-            close(out);
-        execve(path, args, env);
-        exit(127);
-    }
-    if (in != 0)
-          close(in);
-    if (out != 1)
-         close(out);
+	pid = fork();
+	path = ft_strjoin(cmd->path, cmd->commands[0]);
+	free(cmd->path);
+	cmd->path = path;
+	if (pid == 0)
+	{
+		dup2(in, 0);
+		dup2(out, 1);
+		if (in != 0)
+			close(in);
+		if (out != 1)
+			close(out);
+		execve(path, cmd->commands, env);
+		exit(127);
+	}
+	if (in != 0)
+		close(in);
+	if (out != 1)
+		close(out);
 }
 
-
-
-void exec_pipe(t_pipe **pipex, char **env)
+void	exec_pipe(t_pipe **pipex, char **env)
 {
+	int	fd[2];
 
-    int fd[2];
-
-    pipe(fd);
-    char *path;
-     char *args[] = {"ls","-l", NULL};
-    path = ft_strjoin((*pipex)->commands->path,(*pipex)->commands->commands[0]);
-    exec(path,(*pipex)->commands->commands, (*pipex)->infile, fd[1],env);
-  
-    char *args1[] = {"wc","-l", NULL};
-    path = ft_strjoin((*pipex)->commands->next->path,(*pipex)->commands->next->commands[0]);
-    exec(path,(*pipex)->commands->next->commands, fd[0], (*pipex)->outfile,env);
-    wait(NULL);
-    exit(0);
+	pipe(fd);
+	exec((*pipex)->commands, (*pipex)->infile, fd[1], env);
+	exec((*pipex)->commands->next, fd[0], (*pipex)->outfile, env);
+	free_s(pipex);
+	wait(NULL);
+	exit(0);
 }
