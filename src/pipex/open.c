@@ -14,6 +14,12 @@
 
 void	openfd(t_pipe *pipex, int ac, char **av)
 {
+	if (strcmp(av[1], av[(ac - 1)]) == 0)
+	{
+		printf_error("Error: same file for input and output\n");
+		free(pipex);
+		exit(0);
+	}
 	pipex->infile = open(av[1], O_RDWR, 0644);
 	if (pipex->infile == -1)
 	{
@@ -25,6 +31,7 @@ void	openfd(t_pipe *pipex, int ac, char **av)
 	if (pipex->outfile == -1)
 	{
 		close(pipex->infile);
+		free(pipex);
 		perror("Error");
 		exit(0);
 	}

@@ -35,7 +35,6 @@ typedef struct pipe
 	struct cmd	*commands;
 }				t_pipe;
 
-
 void			openfd(t_pipe *pipex, int ac, char **av);
 
 void			parse_progam(int ac, char **av, char **env, t_pipe **pipex);
@@ -56,7 +55,6 @@ void			printf_error(char *str);
 
 // Free
 void			free_mysplit(char **arr);
-void			free_commands(t_cmd **comands, t_pipe **pipex);
 void			free_paths(char **paths);
 void			free_s(t_pipe **pipex);
 #endif

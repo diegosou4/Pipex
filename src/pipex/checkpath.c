@@ -77,7 +77,6 @@ void	check_spath(t_pipe **pipex)
 void	parse_progam(int ac, char **av, char **env, t_pipe **pipex)
 {
 	char	*path;
-	char	*fcommand;
 
 	path = ft_getenv(env);
 	get_commands(pipex, path, ac, av);

@@ -16,9 +16,13 @@ int	main(int ac, char **av, char **env)
 {
 	t_pipe	*pipex;
 
-	if (ac < 4)
+	if (ac != 5)
 		return (0);
 	pipex = (t_pipe *)malloc(sizeof(t_pipe) * 1);
+	if (pipex == NULL)
+	{
+		return (0);
+	}
 	openfd(pipex, ac, av);
 	parse_progam(ac, av, env, &pipex);
 	free(pipex);
