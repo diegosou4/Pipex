@@ -43,8 +43,10 @@ char *ask_acess(char *comand, char *path)
          free_paths(paths);
          return(cplusp);
       }
+       free(cplusp);
       i++;
    }
+
       return(NULL);
 }
 

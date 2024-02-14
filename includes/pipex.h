@@ -60,4 +60,7 @@ void closefd(t_pipe **pipex);
 
 char	**mysplit(char const *s, char c);
 
+// Free
+void free_mysplit(char **arr);
+void free_s(t_pipe **pipex);
 #endif
