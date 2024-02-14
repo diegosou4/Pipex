@@ -46,7 +46,7 @@ char *simple_split(char *str, char sep)
 
 
 
-t_cmd *new_cmd(char **comands)
+t_cmd *new_cmd(char **comands,char *path)
 {
     t_cmd *cmd;
     cmd = (t_cmd*) malloc(sizeof(t_cmd) * 1);
@@ -55,7 +55,7 @@ t_cmd *new_cmd(char **comands)
         return(NULL);
     }
     cmd->commands = comands;
-    cmd->path = NULL;
+    cmd->path = ft_strjoin(path,"/");;
     if(cmd->commands == NULL)
     {
         free(cmd);
@@ -65,12 +65,12 @@ t_cmd *new_cmd(char **comands)
     return cmd;
 }
 
-void add_backcmd(char **comands, t_cmd **cmd)
+void add_backcmd(char **comands, t_cmd **cmd, char *path)
 {
     t_cmd *ptr;
     t_cmd *last;
 
-    last = new_cmd(comands);
+    last = new_cmd(comands,path);
     if(last == NULL)
         return;
     ptr = *(cmd);

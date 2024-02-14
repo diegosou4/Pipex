@@ -43,9 +43,13 @@ void exec_pipe(t_pipe **pipex, char **env)
     int fd[2];
 
     pipe(fd);
-    char *args[] = {"ls","-l", NULL};
-    exec("/usr/bin/ls",args, (*pipex)->infile, fd[1],env);
-    char *args1[] = {"cat","-e", NULL};
-    exec("/usr/bin/cat",args1,fd[0],(*pipex)->outfile,env);
+    char *path;
+
+    path = ft_strjoin((*pipex)->commands->path,(*pipex)->commands->commands[0]);
+    exec(path,(*pipex)->commands->commands, (*pipex)->infile, fd[1],env);
+  
+
+    path = ft_strjoin((*pipex)->commands->next->path,(*pipex)->commands->next->commands[0]);
+    exec(path,(*pipex)->commands->next->commands, (*pipex)->infile, fd[1],env);
     exit(0);
 }

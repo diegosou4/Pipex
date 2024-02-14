@@ -45,11 +45,14 @@ void get_commands(t_pipe **pipex, char *path,int ac,char **av)
    while(i != (ac - 1))
    {
         if(i == 2)
-            (*pipex)->commands =  new_cmd(ft_split(av[i], ' '));
+        {
+            (*pipex)->commands =  new_cmd(ft_split(av[i], ' '),path);
+        }
         else
-        add_backcmd(ft_split(av[i], ' '),&(*pipex)->commands);
+        add_backcmd(ft_split(av[i], ' '),&(*pipex)->commands,path);
     i++;
    }
+
 }
 
 
@@ -61,9 +64,7 @@ void parse_progam(int ac,char **av,char **env, t_pipe **pipex)
     char *okpath;
     fcommand = ft_strjoin("/",av[2]);
     path = ft_getenv(env);
+    path = ask_acess(fcommand,path);
     get_commands(pipex,path,ac,av);
-
-
-
-
+    exec_pipe(pipex,env);
 }
