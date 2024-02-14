@@ -31,7 +31,7 @@ char *ask_acess(char *comand, char *path)
    char **paths;
    int i;
    char *cplusp;
-   paths = ft_split(path,':');
+   paths = mysplit(path,':');
    i = 0;
    while(paths[i])
    {

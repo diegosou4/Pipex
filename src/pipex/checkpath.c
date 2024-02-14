@@ -61,10 +61,7 @@ void parse_progam(int ac,char **av,char **env, t_pipe **pipex)
     char *path;
     char *fcommand;
 
-    char *okpath;
-    fcommand = ft_strjoin("/",av[2]);
     path = ft_getenv(env);
-    path = ask_acess(fcommand,path);
     get_commands(pipex,path,ac,av);
     exec_pipe(pipex,env);
 }

@@ -46,7 +46,7 @@ char *simple_split(char *str, char sep)
 
 
 
-t_cmd *new_cmd(char **comands,char *path)
+t_cmd *new_cmd(char **comands, char *path)
 {
     t_cmd *cmd;
     cmd = (t_cmd*) malloc(sizeof(t_cmd) * 1);
@@ -55,7 +55,7 @@ t_cmd *new_cmd(char **comands,char *path)
         return(NULL);
     }
     cmd->commands = comands;
-    cmd->path = ft_strjoin(path,"/");;
+    cmd->path = ask_acess(cmd->commands[0],path);
     if(cmd->commands == NULL)
     {
         free(cmd);

@@ -50,12 +50,14 @@ void exec_pipe(t_pipe **pipex,char **env);
 void openfd(t_pipe *pipex,int ac,char **av);
 char *ask_acess(char *comand, char *path);
 char *checkpath(char **path, char *command);
-t_cmd *new_cmd(char **comands,char *path);
-//t_cmd *new_cmd(char *comands);
+t_cmd *new_cmd(char **comands, char *path);
+
 void free_commands(t_cmd **comands, t_pipe **pipex);
 void add_backcmd(char **comands, t_cmd **cmd, char *path);
 
 void free_paths(char **paths);
 void closefd(t_pipe **pipex);
+
+char	**mysplit(char const *s, char c);
 
 #endif

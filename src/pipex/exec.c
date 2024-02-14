@@ -44,12 +44,13 @@ void exec_pipe(t_pipe **pipex, char **env)
 
     pipe(fd);
     char *path;
-
+     char *args[] = {"ls","-l", NULL};
     path = ft_strjoin((*pipex)->commands->path,(*pipex)->commands->commands[0]);
     exec(path,(*pipex)->commands->commands, (*pipex)->infile, fd[1],env);
   
-
+    char *args1[] = {"wc","-l", NULL};
     path = ft_strjoin((*pipex)->commands->next->path,(*pipex)->commands->next->commands[0]);
-    exec(path,(*pipex)->commands->next->commands, (*pipex)->infile, fd[1],env);
+    exec(path,(*pipex)->commands->next->commands, fd[0], (*pipex)->outfile,env);
+    wait(NULL);
     exit(0);
 }
