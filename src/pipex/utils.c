@@ -22,29 +22,6 @@ void	printf_error(char *str)
 		write(2, &str[j++], 1);
 }
 
-char	*simple_split(char *str, char sep)
-{
-	int		j;
-	int		i;
-	char	*newstr;
-
-	j = 0;
-	i = ft_strlen(str);
-	while (str[j])
-	{
-		if (str[j] == sep)
-			break ;
-		j++;
-	}
-	if (j < i)
-	{
-		newstr = ft_substr(str, 0, j);
-		return (newstr);
-	}
-	if (j >= i)
-		return (str);
-}
-
 t_cmd	*new_cmd(char **comands, char *path)
 {
 	t_cmd	*cmd;

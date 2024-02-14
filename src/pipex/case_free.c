@@ -12,11 +12,6 @@
 
 #include "../../includes/pipex.h"
 
-void	closefd(t_pipe **pipex)
-{
-	close((*pipex)->infile);
-	close((*pipex)->outfile);
-}
 
 void	free_commands(t_cmd **comands, t_pipe **pipex)
 {
