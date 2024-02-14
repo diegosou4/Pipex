@@ -6,7 +6,7 @@
 /*   By: diegmore <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 15:43:10 by diegmore          #+#    #+#             */
-/*   Updated: 2024/02/14 15:43:15 by diegmore         ###   ########.fr       */
+/*   Updated: 2024/02/14 17:33:34 by diegmore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static int	ft_givestring(char *s, char sep, char *dest)
 			i++;
 			j++;
 		}
-        dest[j] = '/';
+		dest[j] = '/';
 		if (s[i] == sep)
 			return (i);
 	}

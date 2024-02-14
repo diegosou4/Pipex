@@ -10,31 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../../includes/pipex.h"
 
-
-void closefd(t_pipe **pipex)
+void	closefd(t_pipe **pipex)
 {
-    close((*pipex)->infile);
-    close((*pipex)->outfile);
+	close((*pipex)->infile);
+	close((*pipex)->outfile);
 }
 
-void free_commands(t_cmd **comands, t_pipe **pipex)
+void	free_commands(t_cmd **comands, t_pipe **pipex)
 {
-    t_cmd *ptr;
-    t_cmd *next;
+	t_cmd	*ptr;
+	t_cmd	*next;
 
-    ptr = (*comands);
-
-    while(ptr != NULL)
-    {
-        next = ptr->next;
-        free(ptr);
-        ptr = next;
-    }
-    free(ptr);
-    closefd(pipex);
+	ptr = (*comands);
+	while (ptr != NULL)
+	{
+		next = ptr->next;
+		free(ptr);
+		ptr = next;
+	}
+	free(ptr);
+	closefd(pipex);
 }
-
-
