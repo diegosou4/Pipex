@@ -8,7 +8,7 @@ LIBFT_SRC = ft_strnstr.c ft_calloc.c ft_bzero.c ft_split.c \
 			ft_strlen.c ft_strdup.c ft_strjoin.c ft_substr.c
 
 PIPEX_SRC = ft_getenv.c checkpath.c parse.c utils.c exec.c \
-			acess.c open.c case_free.c
+			acess.c open.c case_free.c mysplit.c
 
 
 SRCL = $(addprefix ./src/libft/, $(LIBFT_SRC))
