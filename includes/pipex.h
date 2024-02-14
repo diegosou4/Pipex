@@ -22,18 +22,16 @@
 
 typedef struct cmd
 {
-    char *commands;
+    char *path;
+    char **commands;
     struct cmd *next;
 }       t_cmd;
 
 typedef struct pipe
 {
-    char *path;
     int infile;
     int outfile;
     struct cmd *commands;
-    int sizecomands;
-    struct pipe *next;
 }           t_pipe;
 
 
@@ -43,20 +41,23 @@ char *checkpath(char **path, char *command);
 
 void exec(char *path, char **args, int in, int out, char **env);
 int check_ac(int ac);
-
+void get_commands(t_pipe **pipex, char *path,int ac,char **av);
 
 void printf_error(char *str);
 void parse_progam(int ac,char **av,char **env, t_pipe **pipex);
 char *simple_split(char *str, char sep);
 void exec_pipe(t_pipe **pipex,char **env);
 void openfd(t_pipe *pipex,int ac,char **av);
-void *ask_acess(t_pipe **pipex, char *path);
+char *ask_acess(char *comand, char *path);
 char *checkpath(char **path, char *command);
+t_cmd *new_cmd(char **comands, char *path);
 
-t_cmd *new_cmd(char *comands);
 void free_commands(t_cmd **comands, t_pipe **pipex);
-void add_backcmd(char *comands, t_cmd **cmd);
+void add_backcmd(char **comands, t_cmd **cmd, char *path);
 
+void free_paths(char **paths);
 void closefd(t_pipe **pipex);
+
+char	**mysplit(char const *s, char c);
 
 #endif

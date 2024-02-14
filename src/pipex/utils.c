@@ -44,22 +44,9 @@ char *simple_split(char *str, char sep)
         return(str);
 }
 
-int pipesize(t_pipe **pipe)
-{
-    t_pipe *ptr;
-    int i;
-    i = 0;
-    ptr = *(pipe);
 
-    while(ptr != NULL)
-    {
-        ptr = ptr->next;
-        i++; 
-    }
-    return(i);
-}
 
-t_cmd *new_cmd(char *comands)
+t_cmd *new_cmd(char **comands, char *path)
 {
     t_cmd *cmd;
     cmd = (t_cmd*) malloc(sizeof(t_cmd) * 1);
@@ -67,7 +54,8 @@ t_cmd *new_cmd(char *comands)
     {
         return(NULL);
     }
-    cmd->commands = ft_strjoin("/",comands);
+    cmd->commands = comands;
+    cmd->path = ask_acess(cmd->commands[0],path);
     if(cmd->commands == NULL)
     {
         free(cmd);
@@ -77,12 +65,12 @@ t_cmd *new_cmd(char *comands)
     return cmd;
 }
 
-void add_backcmd(char *comands, t_cmd **cmd)
+void add_backcmd(char **comands, t_cmd **cmd, char *path)
 {
     t_cmd *ptr;
     t_cmd *last;
 
-    last = new_cmd(comands);
+    last = new_cmd(comands,path);
     if(last == NULL)
         return;
     ptr = *(cmd);

@@ -22,6 +22,6 @@ int main(int ac, char **av, char **env)
     pipex = (t_pipe*) malloc(sizeof(t_pipe)* 1);
     openfd(pipex, ac, av);
     parse_progam(ac, av, env, &pipex);
-     free(pipex);
+    free(pipex);
     return(0);
 }
