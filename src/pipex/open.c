@@ -23,7 +23,7 @@ void	openfd(t_pipe *pipex, int ac, char **av)
 	pipex->infile = open(av[1], O_RDWR, 0777);
 	if (pipex->infile == -1)
 	{
-		perror("Error");
+		print_erfile(strerror(errno), av[1]);
 		free(pipex);
 		exit(0);
 	}
@@ -32,7 +32,7 @@ void	openfd(t_pipe *pipex, int ac, char **av)
 	{
 		close(pipex->infile);
 		free(pipex);
-		perror("Error");
+		print_erfile(strerror(errno), av[(ac - 1)]);
 		exit(0);
 	}
 }

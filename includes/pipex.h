@@ -52,7 +52,7 @@ void			exec_pipe(t_pipe **pipex, char **env);
 
 char			**mysplit(char const *s, char c);
 void			printf_error(char *str);
-
+void			print_erfile(char *str, char *file);
 // Free
 void			free_mysplit(char **arr);
 void			free_paths(char **paths);

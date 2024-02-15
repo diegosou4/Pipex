@@ -57,3 +57,24 @@ void	add_backcmd(char **comands, t_cmd **cmd, char *path)
 	}
 	ptr->next = last;
 }
+
+void	print_erfile(char *str, char *file)
+{
+	int	i;
+
+	i = 0;
+	write(2, "Error: ", 8);
+	while (str[i] != '\0')
+	{
+		write(2, &str[i], 1);
+		i++;
+	}
+	write(2, ": ", 2);
+	i = 0;
+	while (file[i] != '\0')
+	{
+		write(2, &file[i], 1);
+		i++;
+	}
+	write(2, "\n", 1);
+}
