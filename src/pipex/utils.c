@@ -6,7 +6,7 @@
 /*   By: diegmore <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 12:30:00 by diegmore          #+#    #+#             */
-/*   Updated: 2024/02/14 17:34:35 by diegmore         ###   ########.fr       */
+/*   Updated: 2024/02/15 14:33:48 by diegmore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,27 @@ void	printf_error(char *str)
 		write(2, &str[j++], 1);
 }
 
+void	get_scommands(char **comands, char *path, t_cmd *cmd)
+{
+	char	*ptr;
+	int		i;
+
+	ptr = ask_command(comands[0]);
+	if (ptr != NULL)
+	{
+		i = ft_intrchrs(ptr, 47);
+		cmd->path = ft_substr(ptr, 0, i);
+		cmd->commands = splitcase(ptr);
+		free(ptr);
+		free_mysplit(comands);
+	}
+	else
+	{
+		cmd->commands = comands;
+		cmd->path = ask_acess(cmd->commands[0], path);
+	}
+}
+
 t_cmd	*new_cmd(char **comands, char *path)
 {
 	t_cmd	*cmd;
@@ -31,8 +52,7 @@ t_cmd	*new_cmd(char **comands, char *path)
 	{
 		return (NULL);
 	}
-	cmd->commands = comands;
-	cmd->path = ask_acess(cmd->commands[0], path);
+	get_scommands(comands, path, cmd);
 	if (cmd->commands == NULL)
 	{
 		free(cmd);
