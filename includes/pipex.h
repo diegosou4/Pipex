@@ -42,14 +42,14 @@ void			get_commands(t_pipe **pipex, char *path, int ac, char **av);
 void			check_spath(t_pipe **pipex);
 char			*checkpath(char **path, char *command);
 char			*ask_acess(char *comand, char *path);
-
+char			*ask_command(char *comand);
 t_cmd			*new_cmd(char **comands, char *path);
 void			add_backcmd(char **comands, t_cmd **cmd, char *path);
-
+void			get_scommands(char **comands, char *path, t_cmd *cmd);
 char			*ft_getenv(char **env);
 void			exec(t_cmd *cmd, int in, int out, char **env);
 void			exec_pipe(t_pipe **pipex, char **env);
-
+char			**splitcase(char *command);
 char			**mysplit(char const *s, char c);
 void			printf_error(char *str);
 void			print_erfile(char *str, char *file);
