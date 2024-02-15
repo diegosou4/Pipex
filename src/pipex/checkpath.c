@@ -81,6 +81,8 @@ void	parse_progam(int ac, char **av, char **env, t_pipe **pipex)
 	if (path == NULL)
 	{
 		printf_error("Error: path not found\n");
+		close((*pipex)->infile);
+		close((*pipex)->outfile);
 		free((*pipex));
 		exit(0);
 	}

@@ -14,9 +14,10 @@
 
 void	openfd(t_pipe *pipex, int ac, char **av)
 {
-	if (strcmp(av[1], av[(ac - 1)]) == 0)
+	if (ft_strcmp(av[1], av[(ac - 1)]) == 0)
 	{
-		printf_error("Error: same file for input and output\n");
+		printf_error(av[1]);
+		write(2, " cannot overwrite existing file\n", 32);
 		free(pipex);
 		exit(0);
 	}
