@@ -11,7 +11,7 @@ PRINTF_SRC = ft_printc.c ft_printf.c ft_putstr.c ft_strrchr.c \
 
 LIBFT_SRC = ft_strnstr.c ft_calloc.c ft_bzero.c ft_split.c \
 			ft_strlen.c ft_strdup.c ft_strjoin.c ft_substr.c \
-			ft_strcmp.c
+			ft_strcmp.c ft_strrchrs.c
 
 PIPEX_SRC = ft_getenv.c checkpath.c utils.c exec.c \
 			acess.c open.c mysplit.c free_struct.c
