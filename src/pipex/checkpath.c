@@ -6,7 +6,7 @@
 /*   By: diemorei <diemorei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 12:26:07 by diegmore          #+#    #+#             */
-/*   Updated: 2024/02/11 14:28:00 by diemorei         ###   ########.fr       */
+/*   Updated: 2024/02/15 11:41:02 by diegmore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ char	*checkpath(char **path, char *command)
 		free(comandf);
 		i++;
 	}
-	perror("Comando nao encontrado\n");
 	return (NULL);
 }
 
@@ -79,6 +78,12 @@ void	parse_progam(int ac, char **av, char **env, t_pipe **pipex)
 	char	*path;
 
 	path = ft_getenv(env);
+	if (path == NULL)
+	{
+		printf_error("Error: path not found\n");
+		free((*pipex));
+		exit(0);
+	}
 	get_commands(pipex, path, ac, av);
 	check_spath(pipex);
 	exec_pipe(pipex, env);

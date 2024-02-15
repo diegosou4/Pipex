@@ -30,7 +30,7 @@ void	exec(t_cmd *cmd, int in, int out, char **env)
 		if (out != 1)
 			close(out);
 		execve(path, cmd->commands, env);
-		exit(127);
+		exit(0);
 	}
 	if (in != 0)
 		close(in);
@@ -46,6 +46,7 @@ void	exec_pipe(t_pipe **pipex, char **env)
 	exec((*pipex)->commands, (*pipex)->infile, fd[1], env);
 	exec((*pipex)->commands->next, fd[0], (*pipex)->outfile, env);
 	free_s(pipex);
+	wait(NULL);
 	wait(NULL);
 	exit(0);
 }

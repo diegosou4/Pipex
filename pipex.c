@@ -21,6 +21,7 @@ int	main(int ac, char **av, char **env)
 	pipex = (t_pipe *)malloc(sizeof(t_pipe) * 1);
 	if (pipex == NULL)
 	{
+		printf_error("Error : fail to allocate memory\n");
 		return (0);
 	}
 	openfd(pipex, ac, av);
